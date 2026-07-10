@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="คู่มือผู้ใช้: เมนูผู้ใช้และสิทธิ์ — จัดการผู้ใช้งาน, บทบาท (Role), สิทธิ์แต่ละเมนู, ขอบเขตโรงงาน">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🏭</text></svg>">
+<title>คู่มือผู้ใช้และสิทธิ์ (User &amp; Permission) — Cotco</title>
+<link rel="stylesheet" href="assets/guide.css">
+</head>
+<body>
+
+<nav class="topnav"><div class="inner">
+  <a class="home" href="index.html"><span class="mark"><img src="assets/ccm-logo.jpg" alt=""></span>คู่มือการใช้งาน</a>
+  <div class="links">
+    <a href="production-plan.html">วางแผนการผลิต</a>
+    <a href="production-output.html">บันทึกการผลิต</a>
+    <a href="production-standard.html">มาตรฐานการผลิต</a>
+    <a href="user-permission.html" aria-current="page">ผู้ใช้และสิทธิ์</a>
+  </div>
+</div></nav>
+<div class="toolbar"><button type="button" onclick="window.print()"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>พิมพ์ / บันทึก PDF</button></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="brand-row">
+      <span class="logo-chip"><img src="assets/ccm-logo.jpg" alt="CCM — Cotco Metalworks"></span>
+      <span class="bt">
+        <span class="sys">ระบบบันทึกการผลิตแบบเรียลไทม์ · เชื่อมต่อ Navision 2013</span>
+        <span class="own">Cotco Metalworks · เอกสารคู่มือสำหรับผู้ดูแลระบบ</span>
+      </span>
+    </div>
+    <p class="eyebrow">คู่มือ 04 · เมนูผู้ใช้และสิทธิ์</p>
+    <h1>จัดการผู้ใช้ บทบาท และสิทธิ์การใช้งาน</h1>
+    <p class="lede">คู่มือสำหรับ<b>ผู้ดูแลระบบ</b> — สร้างและจัดการผู้ใช้, นำเข้าจาก Navision, กำหนด<b>บทบาท (Role)</b> และ<b>สิทธิ์</b>ของแต่ละเมนู รวมถึงขอบเขตโรงงาน และเหตุผลที่บางอย่างระบบไม่ให้ทำ</p>
+  </header>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">2 เมนู</span><div><h2>สองหน้าจอหลัก</h2><p class="sec-sub">แต่ละหน้าจะเปิดได้ต่อเมื่อบทบาทของคุณมีสิทธิ์ “ดู” ของเมนูนั้น</p></div></div>
+    <div class="pivot">
+      <div class="pcard edit">
+        <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><span class="who">ผู้ใช้</span><h3>จัดการผู้ใช้งาน</h3></div></div>
+        <p class="note" style="margin-top:2px">ดูรายชื่อผู้ใช้ (ชื่อ, บทบาท, โรงงาน, สถานะ), ค้นหา/กรอง, สร้างผู้ใช้ใหม่, นำเข้าจาก NAV, แก้ไข, ตั้งรหัสผ่าน, ระงับ และลบ</p>
+      </div>
+      <div class="pcard system">
+        <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><span class="who">สิทธิ์</span><h3>สิทธิ์และบทบาท</h3></div></div>
+        <p class="note" style="margin-top:2px">สร้าง/แก้บทบาท (Role) และติ๊กสิทธิ์แต่ละเมนู · มีตารางภาพรวมสิทธิ์ (บทบาท × เมนู) ให้ดูว่าใครทำอะไรได้บ้าง</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">หลักการ</span><div><h2>สิทธิ์ทำงานอย่างไร</h2><p class="sec-sub">สิทธิ์ = คู่ของ “เมนู” กับ “การกระทำ” ที่ผูกกับบทบาท</p></div></div>
+    <div class="panel" style="margin-bottom:16px">
+      <p class="desc mt0">แต่ละเมนูให้สิทธิ์ได้สูงสุด 6 การกระทำ (ไม่ใช่ทุกเมนูมีครบ):</p>
+      <div class="chips">
+        <span class="chip"><span class="cd blue"></span>ดู (View)</span>
+        <span class="chip"><span class="cd green"></span>เพิ่ม (Insert)</span>
+        <span class="chip"><span class="cd green"></span>แก้ไข (Edit)</span>
+        <span class="chip"><span class="cd red"></span>ลบ (Delete)</span>
+        <span class="chip"><span class="cd amber"></span>อนุมัติ (Approve)</span>
+        <span class="chip"><span class="cd blue"></span>จัดลำดับ (Sequence)</span>
+      </div>
+      <p class="note">ติ๊กช่องไหน = ทุกคนใน<b>บทบาท</b>นั้นทำสิ่งนั้นได้ · ผลที่เห็น: <b>ปุ่มและเมนูจะโผล่เฉพาะเมื่อมีสิทธิ์</b> เช่น ไม่มีสิทธิ์ “ดู” เมนูจัดการผู้ใช้ ก็จะไม่เห็นเมนูนั้นเลย, ไม่มีสิทธิ์ “เพิ่ม” ปุ่มเพิ่มผู้ใช้ก็จะหาย</p>
+    </div>
+    <div class="callout nav">
+      <span class="co-ic" style="color:var(--system)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 15 2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      <div><h4>บทบาท SuperAdmin เห็นและทำได้ทุกอย่าง</h4><p>ผู้ที่อยู่ในบทบาท SuperAdmin จะข้ามการตรวจสิทธิ์ทั้งหมด — ใช้สำหรับผู้ดูแลระบบสูงสุดเท่านั้น</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">ตารางสิทธิ์</span><div><h2>สัญลักษณ์ในตารางภาพรวม</h2><p class="sec-sub">แต่ละช่อง = บทบาทหนึ่ง × เมนูหนึ่ง</p></div></div>
+    <div class="grid3">
+      <div class="pcard edit" style="text-align:center"><div style="font-size:28px;color:var(--edit);margin-bottom:6px">✓</div><h3 style="justify-content:center">อนุญาตครบ</h3><p class="note" style="margin-top:4px">ทำได้ทุกการกระทำที่เมนูนั้นมี</p></div>
+      <div class="pcard lockc" style="text-align:center"><div style="font-size:28px;color:var(--ink-faint);margin-bottom:6px">–</div><h3 style="justify-content:center">อนุญาตบางส่วน</h3><p class="note" style="margin-top:4px">ทำได้บางการกระทำ (เช่น ดูได้ แต่แก้ไม่ได้)</p></div>
+      <div class="pcard" style="text-align:center;border-top:4px solid var(--block)"><div style="font-size:28px;color:var(--block);margin-bottom:6px">✕</div><h3 style="justify-content:center">ไม่อนุญาต</h3><p class="note" style="margin-top:4px">ไม่มีสิทธิ์ในเมนูนั้นเลย</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">ผู้ใช้</span><div><h2>งานจัดการผู้ใช้</h2><p class="sec-sub">การกระทำสำคัญ พร้อมผลที่ตามมา</p></div></div>
+    <div class="stack">
+      <div class="rule"><span class="ri"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></span><div><h3>สร้างผู้ใช้ Local</h3><p>กรอก Username, รหัสผ่าน, ชื่อ-สกุล, อีเมล, บทบาท, โรงงาน · ผู้ใช้ใหม่จะ<b>ถูกบังคับเปลี่ยนรหัสผ่านเมื่อเข้าใช้ครั้งแรก</b> · Username ซ้ำจะเตือน</p></div></div>
+      <div class="rule"><span class="ri"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></span><div><h3>นำเข้าจาก Navision (NAV)</h3><p>เลือกพนักงานจาก NAV → กำหนดบทบาท + โรงงาน + รหัสผ่านเริ่มต้น (ชุดเดียวใช้ร่วมกัน) → ทุกคนถูก<b>บังคับเปลี่ยนรหัสครั้งแรก</b> · คนที่นำเข้าแล้วจะขึ้น “Import แล้ว”</p></div></div>
+      <div class="rule"><span class="ri"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><h3>ตั้ง / รีเซ็ตรหัสผ่าน (โดย Admin)</h3><p>รหัสที่ Admin ตั้งให้<b>ใช้เข้าระบบได้ทันที ไม่ต้องเปลี่ยนอีก</b> · การตั้งรหัสจะ<b>เตะทุกอุปกรณ์ที่ล็อกอินอยู่ออก</b> ให้เข้าใหม่</p></div></div>
+      <div class="rule"><span class="ri"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 1 1 5.64 6.64"/><line x1="12" y1="2" x2="12" y2="12"/></svg></span><div><h3>เปิดใช้งาน ↔ ระงับ (Active / Suspend)</h3><p>สลับสถานะได้ (มีหน้ายืนยันก่อน) · การ<b>ระงับจะเตะผู้ใช้ที่ล็อกอินอยู่ออกทันที</b></p></div></div>
+      <div class="rule"><span class="ri"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></span><div><h3>ลบผู้ใช้</h3><p>เป็นการ<b>ลบแบบซ่อน (soft delete)</b> ข้อมูลยังอยู่ในระบบ · เตะ session ออกทันที · <b>Username นำกลับมาใช้ใหม่ได้</b></p></div></div>
+    </div>
+    <div class="callout info" style="margin-top:16px">
+      <span class="co-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+      <div><h4>ออกจากทุกอุปกรณ์ (Logout all)</h4><p>ไม่มีปุ่มแยกต่างหาก — จะเกิดขึ้นอัตโนมัติเมื่อ <b>ระงับ, ตั้งรหัสผ่านใหม่, หรือลบผู้ใช้</b></p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">รหัส · โรงงาน</span><div><h2>รหัสผ่าน และขอบเขตโรงงาน</h2></div></div>
+    <div class="duo">
+      <div class="panel">
+        <h3>กฎรหัสผ่าน</h3>
+        <p class="desc">แสดงเป็นเช็กลิสต์ให้ตอนตั้งรหัส</p>
+        <div class="chips">
+          <span class="chip"><span class="cd green"></span>อย่างน้อย 8 ตัวอักษร</span>
+          <span class="chip"><span class="cd green"></span>พิมพ์เล็ก a–z</span>
+          <span class="chip"><span class="cd green"></span>พิมพ์ใหญ่ A–Z</span>
+          <span class="chip"><span class="cd green"></span>ตัวเลข 0–9</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>ขอบเขตโรงงาน (P1 / P2 / ALL)</h3>
+        <p class="desc">ผู้ใช้แต่ละคนผูกกับโรงงาน อย่างน้อย 1 แห่ง</p>
+        <div class="fields">
+          <div class="frow"><span class="fl">P1 หรือ P2</span><span>เห็น/ทำงานเฉพาะข้อมูลโรงงานตัวเอง</span></div>
+          <div class="frow"><span class="fl">ALL</span><span>เห็นทุกโรงงาน</span></div>
+        </div>
+        <p class="life-note">ผู้ใช้ P1 จะสร้าง/แก้/ลบผู้ใช้ของ P2 ไม่ได้ (ระบบปฏิเสธ “ขอบเขตโรงงานไม่ตรงกัน”)</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">ทำไมทำไม่ได้</span><div><h2>เหตุผลที่ระบบไม่ให้ทำ</h2><p class="sec-sub">กติกาความปลอดภัย เพื่อกันการยกระดับสิทธิ์เกินตัว</p></div></div>
+    <div class="checks">
+      <div class="check"><span class="ci x"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span class="ct"><b>ให้สิทธิ์ที่ตัวเองไม่มีไม่ได้</b> <span>— ติ๊กสิทธิ์ที่คุณเองไม่มี จะบันทึกไม่ผ่าน</span></span></div>
+      <div class="check"><span class="ci x"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span class="ct"><b>ย้ายผู้ใช้ไปบทบาทที่สิทธิ์เกินตัวไม่ได้</b> <span>— บทบาทปลายทางต้องไม่มีสิทธิ์เกินกว่าที่คุณมี</span></span></div>
+      <div class="check"><span class="ci x"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span class="ct"><b>เปลี่ยนชื่อบทบาทของระบบไม่ได้</b> <span>— บทบาทระบบ (เช่น SuperAdmin) แก้ชื่อและลบไม่ได้</span></span></div>
+      <div class="check"><span class="ci x"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span class="ct"><b>ลบบทบาทที่ยังมีผู้ใช้อยู่ไม่ได้</b> <span>— ต้องย้ายผู้ใช้ไปบทบาทอื่นก่อน</span></span></div>
+      <div class="check"><span class="ci x"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span class="ct"><b>แก้ข้อมูลข้ามโรงงานไม่ได้</b> <span>— ผู้ใช้ P1 แก้ข้อมูลของ P2 ไม่ได้</span></span></div>
+    </div>
+    <p class="life-note">หมายเหตุ: การซ่อนปุ่มบนหน้าจอเป็นแค่ความสะดวก — เซิร์ฟเวอร์ตรวจสิทธิ์ซ้ำเสมอ ต่อให้เลี่ยงหน้าจอได้ก็ยังถูกปฏิเสธ</p>
+  </section>
+
+  <footer>
+    <div class="foot-brand"><span class="fl">จัดทำและพัฒนาระบบโดย</span><span class="fc"><img src="assets/knt-logo.png" alt="KNT Technology Co., Ltd."></span></div>
+    คู่มือผู้ใช้และสิทธิ์ (User &amp; Permission) · เชื่อมต่อ Navision 2013 · Cotco Metalworks
+  </footer>
+</div>
+</body>
+</html>

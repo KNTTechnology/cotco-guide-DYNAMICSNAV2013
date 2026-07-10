@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="คู่มือผู้ใช้: เมนูมาตรฐานการผลิต (Routing Standard) — Cycle time, เวลาเปลี่ยนงาน, นำเข้า/ส่งออก Excel">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🏭</text></svg>">
+<title>คู่มือมาตรฐานการผลิต (Routing Standard) — Cotco</title>
+<link rel="stylesheet" href="assets/guide.css">
+</head>
+<body>
+
+<nav class="topnav"><div class="inner">
+  <a class="home" href="index.html"><span class="mark"><img src="assets/ccm-logo.jpg" alt=""></span>คู่มือการใช้งาน</a>
+  <div class="links">
+    <a href="production-plan.html">วางแผนการผลิต</a>
+    <a href="production-output.html">บันทึกการผลิต</a>
+    <a href="production-standard.html" aria-current="page">มาตรฐานการผลิต</a>
+    <a href="user-permission.html">ผู้ใช้และสิทธิ์</a>
+  </div>
+</div></nav>
+<div class="toolbar"><button type="button" onclick="window.print()"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>พิมพ์ / บันทึก PDF</button></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="brand-row">
+      <span class="logo-chip"><img src="assets/ccm-logo.jpg" alt="CCM — Cotco Metalworks"></span>
+      <span class="bt">
+        <span class="sys">ระบบบันทึกการผลิตแบบเรียลไทม์ · เชื่อมต่อ Navision 2013</span>
+        <span class="own">Cotco Metalworks · เอกสารคู่มือสำหรับผู้ดูแลมาตรฐาน</span>
+      </span>
+    </div>
+    <p class="eyebrow">คู่มือ 03 · เมนูมาตรฐานการผลิต</p>
+    <h1>มาตรฐานการผลิต — ตัวเลขที่ทำให้ระบบคำนวณเวลาเองได้</h1>
+    <p class="lede">เมนู <b>มาตรฐานการผลิต (Routing Standard)</b> เก็บ “เวลามาตรฐาน” ของแต่ละสินค้าบนแต่ละเครื่องจักร เช่น Cycle time และเวลาเปลี่ยนงาน — ตัวเลขชุดนี้คือสิ่งที่ทำให้หน้า<b>วางแผนการผลิต</b>คำนวณเวลาเริ่ม/สิ้นสุดให้อัตโนมัติ</p>
+  </header>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">หลักการ</span><div><h2>1 แถว = 1 สินค้า × 1 เครื่องจักร</h2><p class="sec-sub">สินค้าเดียวกันแต่คนละเครื่อง มีมาตรฐานคนละแถว</p></div></div>
+    <div class="callout info">
+      <span class="co-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+      <div><h4>เวลาในหน้าจอกรอกเป็น “นาที”</h4><p>ทุกช่องเวลา (Cycle time, เวลาเปลี่ยนงาน) กรอกและแสดงเป็น<b>นาที</b> — ระบบเก็บเป็นวินาทีให้เองเบื้องหลัง ไม่ต้องแปลง</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">ทำอะไรได้</span><div><h2>สิ่งที่ทำได้ในเมนูนี้</h2><p class="sec-sub">มีทั้งเพิ่มทีละรายการ และนำเข้าเป็นชุดด้วย Excel</p></div></div>
+    <div class="grid3">
+      <div class="pcard edit"><div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span><div><span class="who">ค้นหา / กรอง</span><h3>หารายการ</h3></div></div><p class="note" style="margin-top:2px">ค้นด้วย Item No / ชื่อสินค้า, กรองตามเครื่องจักร, โรงงาน (P1/P2) และแสดงรายการที่ปิดใช้งานได้</p></div>
+      <div class="pcard edit"><div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><div><span class="who">เพิ่ม / แก้</span><h3>ทีละรายการ</h3></div></div><p class="note" style="margin-top:2px">กด “เพิ่มมาตรฐาน” เพื่อสร้างเอง หรือกดไอคอนดินสอเพื่อแก้แถวเดิม</p></div>
+      <div class="pcard system"><div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></span><div><span class="who">Excel</span><h3>นำเข้า / ส่งออก</h3></div></div><p class="note" style="margin-top:2px">ส่งออกรายการเป็น .xlsx ไปแก้ แล้วนำเข้ากลับทีเดียวหลายรายการ (อัปเดต/เพิ่มอัตโนมัติ)</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">ข้อมูล</span><div><h2>ข้อมูลที่แต่ละมาตรฐานเก็บ</h2><p class="sec-sub">ช่องที่มีผลต่อการคำนวณเวลาในแผนโดยตรง</p></div></div>
+    <div class="tablewrap">
+      <table class="g">
+        <thead><tr><th style="width:26%">ช่อง</th><th style="width:37%">ความหมาย</th><th>ใช้ทำอะไร</th></tr></thead>
+        <tbody>
+          <tr><td><b>Item No</b> <span class="muted">(จำเป็น)</span></td><td>รหัสสินค้า</td><td>คู่กับเครื่องจักร ใช้ระบุว่าเป็นมาตรฐานของอะไร</td></tr>
+          <tr><td><b>ชื่อสินค้า</b></td><td>คำอธิบายสินค้า</td><td>แสดงในตารางรายการ</td></tr>
+          <tr><td><b>ขนาด (S / M / L)</b></td><td>คลาสขนาดของงาน</td><td>เลือกว่าจะใช้เวลาเปลี่ยนงาน “→ S/M/L” ค่าไหน</td></tr>
+          <tr><td><b>มิติ</b> (หนา / กว้าง / ยาว)</td><td>ขนาดแผ่น (มม.)</td><td>ใช้เลือกเวลาเปลี่ยนงานเมื่อความหนา/ยาวเปลี่ยน</td></tr>
+          <tr><td><b>เครื่องจักร</b> <span class="muted">(จำเป็น)</span></td><td>ศูนย์เครื่องจักรที่ใช้มาตรฐานนี้</td><td>เลือกจากรายการเครื่องที่มีอยู่</td></tr>
+          <tr><td><b>Cycle time</b> (นาที/ชิ้น)</td><td>เวลาผลิตต่อชิ้น <span class="muted">— ตัวเลขหัวใจ</span></td><td><b>เวลาผลิต = จำนวน × Cycle time</b></td></tr>
+          <tr><td><b>น้ำหนัก/ชิ้น</b> (กก.)</td><td>น้ำหนักเฉลี่ยต่อชิ้น</td><td>ใช้เป็นน้ำหนักสำรองในแผนเมื่อ NAV ไม่มีค่าน้ำหนัก</td></tr>
+          <tr><td><b>เปลี่ยน → S / M / L</b></td><td>เวลาเปลี่ยนงานไปคลาสขนาดนั้น</td><td>ใช้เป็น Setup เริ่มต้นเมื่อขนาดเปลี่ยนระหว่างงาน</td></tr>
+          <tr><td><b>เปลี่ยนความหนา / ความยาว</b></td><td>เวลาเปลี่ยนงานเมื่อหนา/ยาวเปลี่ยน</td><td>ใช้เป็น Setup เริ่มต้นตามการเปลี่ยนมิติ</td></tr>
+          <tr><td><b>Setup</b> (เฉพาะงานแปรรูป)</td><td>ค่า setup ค่าเดียว</td><td>ใช้กับแถวงานแปรรูปเท่านั้น (ปกติเว้นว่าง)</td></tr>
+          <tr><td><b>โรงงาน</b> (P1 / P2)</td><td>ขอบเขตโรงงานของมาตรฐาน</td><td>คุมว่าใครแก้ได้ (ตามสิทธิ์โรงงาน)</td></tr>
+          <tr><td><b>สถานะ</b></td><td>ใช้งาน / ปิดใช้งาน</td><td>ปิดใช้งาน = ซ่อนจากการใช้งาน (เปิดกลับได้)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="life-note">หมายเหตุ: ช่อง <b>Sizing S/M/L</b> เป็นข้อมูลอ้างอิงเท่านั้น — ระบบจัดตารางเวลา<b>ไม่ได้ใช้</b>ค่านี้</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">เชื่อมโยง</span><div><h2>มีผลกับหน้าวางแผนอย่างไร</h2><p class="sec-sub">นี่คือเหตุผลว่าทำไมบางแถวในแผนถึงแก้เวลาเองไม่ได้</p></div></div>
+    <div class="rules">
+      <div class="rule"><span class="ri"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><h3>มี Cycle time &gt; 0 → แถวถูกล็อกเวลา</h3><p>ถ้าสินค้าในแถวแผนมีมาตรฐานที่ Cycle time &gt; 0 → แถวนั้นเป็นแบบ “มี Routing” ระบบคุมเวลาเริ่ม/สิ้นสุดให้ (แก้ได้แค่ Setup)</p></div></div>
+      <div class="rule"><span class="ri"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></span><div><h3>จำนวนยิ่งมาก เวลายิ่งนาน</h3><p>เวลาผลิต = จำนวน × Cycle time — เพิ่มจำนวนหรือ Cycle สูงขึ้น เวลาสิ้นสุดก็เลื่อนออกไป</p></div></div>
+      <div class="rule"><span class="ri"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 3v6h6"/></svg></span><div><h3>เวลาเปลี่ยนงาน = Setup เริ่มต้น</h3><p>ระบบดูการเปลี่ยนจากงานก่อนหน้า: ขนาดเปลี่ยน→ใช้ “เปลี่ยน→ขนาดใหม่”, หนาเปลี่ยน→“เปลี่ยนความหนา”, ยาวเปลี่ยน→“เปลี่ยนความยาว” (ผู้วางแผน override เองได้)</p></div></div>
+      <div class="rule"><span class="ri"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><div><h3>ไม่มีมาตรฐาน → ตกไปบล็อก 2 ชม.</h3><p>สินค้าที่ไม่มีมาตรฐาน (หรือ Cycle = 0) จะกลายเป็นแถว “ไม่มี Routing” — ผู้วางแผนคุมเวลาเอง และได้บล็อกมาตรฐาน 2 ชม.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">Excel</span><div><h2>นำเข้าด้วย Excel</h2><p class="sec-sub">วิธีหลักสำหรับอัปเดตหลายรายการพร้อมกัน</p></div></div>
+    <div class="flow">
+      <div class="step"><span class="n">1</span><h3>ส่งออกไฟล์</h3><p>กด “ส่งออก Excel” ได้ไฟล์ .xlsx ของรายการปัจจุบันไปแก้</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">2</span><h3>นำเข้ากลับ</h3><p>กด “นำเข้า Excel” เลือกไฟล์ .xlsx ระบบจะ<b>อัปเดตของเดิม + เพิ่มของใหม่</b>ให้อัตโนมัติ</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">3</span><h3>ดูผลลัพธ์</h3><p>ระบบสรุป “ทั้งหมด · เพิ่ม · อัปเดต · ผิดพลาด” พร้อมรายการแถวที่ผิดให้แก้</p></div>
+    </div>
+    <div class="sec-head" style="margin-top:26px"><span class="sec-num" style="visibility:hidden">·</span><div><h2 style="font-size:17px">ข้อกำหนดไฟล์นำเข้า</h2></div></div>
+    <div class="checks">
+      <div class="check"><span class="ci i"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct"><b>ต้องเป็นไฟล์ .xlsx</b> <span>— และมีคอลัมน์บังคับ: Item No, เครื่องจักร, โรงงาน</span></span></div>
+      <div class="check"><span class="ci i"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct"><b>สูงสุด 5,000 แถวต่อไฟล์</b> <span>— เกินกว่านั้นระบบจะไม่รับ</span></span></div>
+      <div class="check"><span class="ci i"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct"><b>นำเข้าต้องมีสิทธิ์ “เพิ่ม” และ “แก้ไข”</b> <span>— เพราะเป็นการทั้งเพิ่มและอัปเดต</span></span></div>
+      <div class="check"><span class="ci i"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct"><b>แถวที่อยู่นอกโรงงานของคุณจะถูกข้าม</b> <span>— แถวอื่นยังนำเข้าได้ตามปกติ และรายงานแถวที่ผิดให้</span></span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">สิทธิ์ · สถานะ</span><div><h2>สิทธิ์และสถานะ</h2><p class="sec-sub">ปุ่มจะขึ้นเฉพาะเมื่อคุณมีสิทธิ์และแถวอยู่ในโรงงานของคุณ</p></div></div>
+    <div class="pivot">
+      <div class="panel">
+        <h3>สถานะรายการ</h3>
+        <p class="desc">การลบเป็นการ “ปิดใช้งาน” ไม่ใช่ลบจริง — เปิดกลับได้ทีหลัง</p>
+        <div class="life"><span class="pill"><span class="pd g"></span>ใช้งาน (Active)</span><span class="sep">·</span><span class="pill"><span class="pd n"></span>ปิดใช้งาน (Inactive)</span></div>
+        <p class="life-note">ติ๊ก “แสดงรายการที่ปิดใช้งาน” เพื่อค้นและกดเปิดใช้งานกลับ · ทุกการเปลี่ยนแปลงถูกบันทึกประวัติ (audit)</p>
+      </div>
+      <div class="panel">
+        <h3>ตรวจก่อนบันทึก</h3>
+        <p class="desc">กรอกไม่ครบหรือผิด ระบบจะไฮไลต์ช่องสีแดง</p>
+        <div class="chips">
+          <span class="chip"><span class="cd red"></span>Item No / เครื่องจักร ต้องระบุ</span>
+          <span class="chip"><span class="cd red"></span>โรงงานต้องเป็น P1 / P2</span>
+          <span class="chip"><span class="cd red"></span>ตัวเลขต้องเป็น 0 ขึ้นไป</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-brand"><span class="fl">จัดทำและพัฒนาระบบโดย</span><span class="fc"><img src="assets/knt-logo.png" alt="KNT Technology Co., Ltd."></span></div>
+    คู่มือมาตรฐานการผลิต (Routing Standard) · เชื่อมต่อ Navision 2013 · Cotco Metalworks
+  </footer>
+</div>
+</body>
+</html>

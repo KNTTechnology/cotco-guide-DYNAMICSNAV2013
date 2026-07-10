@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="คู่มือผู้ใช้: บันทึกการผลิตหน้างาน — Production, Consumption, Output และการเชื่อมต่อ Navision 2013">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🏭</text></svg>">
+<title>คู่มือบันทึกการผลิต · Production / Consumption / Output — Cotco</title>
+<link rel="stylesheet" href="assets/guide.css">
+</head>
+<body>
+
+<nav class="topnav"><div class="inner">
+  <a class="home" href="index.html"><span class="mark"><img src="assets/ccm-logo.jpg" alt=""></span>คู่มือการใช้งาน</a>
+  <div class="links">
+    <a href="production-plan.html">วางแผนการผลิต</a>
+    <a href="production-output.html" aria-current="page">บันทึกการผลิต</a>
+    <a href="production-standard.html">มาตรฐานการผลิต</a>
+    <a href="user-permission.html">ผู้ใช้และสิทธิ์</a>
+  </div>
+</div></nav>
+<div class="toolbar"><button type="button" onclick="window.print()"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>พิมพ์ / บันทึก PDF</button></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="brand-row">
+      <span class="logo-chip"><img src="assets/ccm-logo.jpg" alt="CCM — Cotco Metalworks"></span>
+      <span class="bt">
+        <span class="sys">ระบบบันทึกการผลิตแบบเรียลไทม์ · เชื่อมต่อ Navision 2013</span>
+        <span class="own">Cotco Metalworks · เอกสารคู่มือสำหรับหน้างานผลิต</span>
+      </span>
+    </div>
+    <p class="eyebrow">คู่มือ 02 · Production / Consumption / Output</p>
+    <h1>บันทึกการผลิตหน้างานแบบเรียลไทม์</h1>
+    <p class="lede">คู่มือสำหรับผู้ปฏิบัติงานหน้าเครื่อง — เริ่ม/หยุด/พักงาน, บันทึกวัตถุดิบที่ใช้ (Consumption), บันทึกผลผลิตและออก Lot (Output) ทุกอย่างถูกบันทึกเข้าระบบทันทีและรอส่งเข้า Navision 2013</p>
+    <div class="legend">
+      <span class="item"><span class="dot edit"></span>เขียว = ผู้ใช้บันทึกได้</span>
+      <span class="item"><span class="dot system"></span>น้ำเงิน = ระบบ/NAV กำหนด</span>
+      <span class="item"><span class="dot lock"></span>เหลือง = ล็อก / ต้องระวัง</span>
+      <span class="item"><span class="dot block"></span>แดง = บันทึกไม่ได้จนกว่าจะแก้</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">ภาพรวม</span><div><h2>ลำดับงานหน้าเครื่อง</h2><p class="sec-sub">งานหนึ่งใบไหลผ่าน 4 ขั้น — เริ่มจากแผนที่วางไว้</p></div></div>
+    <div class="flow four">
+      <div class="step"><span class="n">1</span><h3>Production</h3><p>เริ่ม–พัก–หยุด งานผลิตบนเครื่อง จับเวลาจริง</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">2</span><h3>Consumption</h3><p>บันทึกวัตถุดิบที่ใช้ไป (เบิก WIP)</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">3</span><h3>Output</h3><p>บันทึกผลผลิต ออก Lot พิมพ์สติกเกอร์</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">4</span><h3>QC</h3><p>ตรวจสอบคุณภาพ (แนบเทมเพลต)</p></div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTION ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">A · Production</span><div><h2>บอร์ดผลิตหน้าเครื่อง</h2><p class="sec-sub">เลือกเครื่องจักรและวันที่ แล้วดูคิวงานที่มาจากแผนการผลิต</p></div></div>
+    <div class="callout info" style="margin-bottom:16px">
+      <span class="co-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+      <div>
+        <h4>คิวงานอัปเดตเองทุก ~7 วินาที</h4>
+        <p>บอร์ดของ<b>วันนี้</b>จะรีเฟรชอัตโนมัติ แท็บเล็ตอีกเครื่องเห็นการเปลี่ยนแปลงโดยไม่ต้องกดรีเฟรช · เลือก<b>วันย้อนหลัง</b>เพื่อดูงานที่ตกค้างได้ (แต่หน้าย้อนหลังจะดูอย่างเดียว แก้ไม่ได้) · <b>เลือกวันในอนาคตไม่ได้</b></p>
+      </div>
+    </div>
+
+    <div class="sec-head" style="margin-top:8px"><span class="sec-num" style="visibility:hidden">·</span><div><h2 style="font-size:17px">สถานะงานบนบอร์ด</h2></div></div>
+    <div class="chips" style="margin-bottom:18px">
+      <span class="chip"><span class="cd green"></span>กำลังผลิต (Running)</span>
+      <span class="chip"><span class="cd amber"></span>พักงาน (Paused)</span>
+      <span class="chip"><span class="cd grey"></span>ผลิตเสร็จ (Finished)</span>
+      <span class="chip"><span class="cd yellow"></span>รอเริ่ม (Waiting)</span>
+      <span class="chip"><span class="cd green"></span>อนุมัติแล้ว (Approved)</span>
+      <span class="chip"><span class="cd red"></span>ถูกปฏิเสธ (Rejected)</span>
+      <span class="chip"><span class="cd amber"></span>ค้างการผลิต (Overdue)</span>
+    </div>
+
+    <div class="sec-head" style="margin-top:8px"><span class="sec-num" style="visibility:hidden">·</span><div><h2 style="font-size:17px">ปุ่มควบคุมงาน</h2><p class="sec-sub">เริ่มงานได้เฉพาะใบที่ “อนุมัติแล้ว” และเป็นบอร์ดวันนี้</p></div></div>
+    <div class="grid3">
+      <div class="pcard edit"><div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></span><div><span class="who">เริ่ม / ดำเนินการ</span><h3>Start · Stop</h3></div></div><p class="note" style="margin-top:2px"><b>Start</b> เริ่มจับเวลาการผลิต · <b>Stop</b> จบงาน → สถานะเป็น “ผลิตเสร็จ”</p></div>
+      <div class="pcard lockc"><div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></span><div><span class="who">พัก / ดำเนินต่อ</span><h3>Pause · Resume</h3></div></div><p class="note" style="margin-top:2px"><b>Pause ต้องเลือกเหตุผล</b> (จากรายการ OEE ของเครื่อง) เพิ่มหมายเหตุได้ · <b>Resume</b> กลับมาผลิตต่อ</p></div>
+      <div class="pcard system"><div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></span><div><span class="who">อนุมัติงาน</span><h3>Approve · Reject</h3></div></div><p class="note" style="margin-top:2px">ผู้มีสิทธิ์อนุมัติเท่านั้น · <b>Reject ต้องใส่เหตุผล</b> · ต้องอนุมัติก่อนถึงจะกด Start ได้</p></div>
+    </div>
+
+    <div class="callout info" style="margin-top:16px">
+      <span class="co-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+      <div>
+        <h4>สิ่งที่ล็อก / ทำไม่ได้</h4>
+        <p>บอร์ด<b>วันย้อนหลัง</b> = ดูอย่างเดียว (ปุ่มควบคุมซ่อน) · งานที่<b>กำลังผลิต</b>จะลากสลับลำดับไม่ได้ · ลากสลับได้เฉพาะภายในใบเดียวกันบนบอร์ดวันนี้ · เครื่องแบบ Parallel เวอร์ชันนี้ปุ่มควบคุมเป็นแบบอ่านอย่างเดียว</p>
+      </div>
+    </div>
+    <p class="life-note">แถบ <b>Main / Capacity / Consumption / Output / QC</b> ในแผงรายละเอียด ให้กดข้ามไปทำแต่ละขั้นของงานนั้นได้ · Capacity แสดงเวลาเดินเครื่อง เวลาสูญเสีย และประวัติการพัก</p>
+  </section>
+
+  <!-- ============ CONSUMPTION ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">B · Consumption</span><div><h2>บันทึกวัตถุดิบที่ใช้</h2><p class="sec-sub">บันทึกการเบิกวัตถุดิบของใบสั่งผลิต — คลัง WIP</p></div></div>
+    <div class="flow four">
+      <div class="step"><span class="n">1</span><h3>เลือกงาน</h3><p>เลือกเครื่อง → ใบสั่งผลิต (RPO) → รายการสินค้า</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">2</span><h3>เพิ่มวัตถุดิบ</h3><p>สแกน QR / ค้นหา / เลือกจากสูตร (BOM)</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">3</span><h3>ใส่จำนวน</h3><p>กรอกน้ำหนัก + จำนวนที่ใช้ (มีปุ่มคำนวณช่วย) เพิ่ม Scrap ได้</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">4</span><h3>บันทึก</h3><p>ตั้งวันที่ + คลัง = WIP → กดบันทึก</p></div>
+    </div>
+    <div class="sec-head" style="margin-top:26px"><span class="sec-num" style="visibility:hidden">·</span><div><h2 style="font-size:17px">เงื่อนไขที่ต้องผ่าน</h2></div></div>
+    <div class="checks">
+      <div class="check"><span class="ci i"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct"><b>คลังต้องเป็น WIP</b> <span>— คลังอื่นจะถูกปฏิเสธ</span></span></div>
+      <div class="check"><span class="ci i"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct"><b>น้ำหนักและจำนวนต้องมากกว่า 0</b></span></div>
+      <div class="check"><span class="ci i"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct"><b>วัตถุดิบต้องอยู่ในสูตร (BOM) ของใบสั่งนั้น</b> <span>— ใบสั่งต้องเป็นสถานะ Released, ล็อตต้องมีในสต็อก (ระบบตรวจกับ Navision ตอนสแกน/ค้นหา)</span></span></div>
+      <div class="check"><span class="ci i"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct"><b>ใช้ได้ไม่เกิน 105% ของที่สูตรกำหนด</b> <span>— เกินกว่านั้นจะขึ้น error</span></span></div>
+    </div>
+    <div class="callout nav" style="margin-top:16px">
+      <span class="co-ic" style="color:var(--system)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      <div><h4>บันทึกแล้วแก้ไม่ได้ → ใช้การกลับรายการ</h4><p>รายการที่บันทึกแล้วจะ<b>ล็อก</b> เพื่อรักษาความถูกต้องของข้อมูล ถ้าใส่ผิดต้อง<b>กลับรายการ (Reverse)</b> — ระบบจะลงรายการติดลบหักล้าง ไม่ใช่การลบทิ้ง (ฟังก์ชันนี้ถูกซ่อนไว้ในช่วง UAT)</p></div>
+    </div>
+  </section>
+
+  <!-- ============ OUTPUT ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">C · Output</span><div><h2>บันทึกผลผลิต และออก Lot</h2><p class="sec-sub">บันทึกของที่ผลิตเสร็จ พร้อมพิมพ์สติกเกอร์ประจำล็อต</p></div></div>
+    <div class="flow">
+      <div class="step"><span class="n">1</span><h3>เลือกงาน + สร้าง Lot</h3><p>เลือกเครื่อง → RPO → สินค้า แล้วกด <b>Generate Lot</b> ระบบตั้งเลข Lot + เติมจำนวนคงเหลือให้</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">2</span><h3>กรอกข้อมูลล็อต</h3><p>น้ำหนัก (กก.) · จำนวน · คุณลักษณะสินค้า (ผิว/ขอบ/เกรด/สเปก ฯลฯ) ให้ครบ</p></div>
+      <div class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="n">3</span><h3>บันทึก + พิมพ์</h3><p>กด <b>Save Output</b> แล้วดู/พิมพ์สติกเกอร์ของล็อตได้</p></div>
+    </div>
+    <div class="sec-head" style="margin-top:26px"><span class="sec-num" style="visibility:hidden">·</span><div><h2 style="font-size:17px">เงื่อนไขที่ต้องผ่าน</h2></div></div>
+    <div class="checks">
+      <div class="check"><span class="ci x"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span class="ct"><b>ผลผลิตรวมห้ามเกินจำนวนที่วางแผนไว้</b> <span>— ไม่มีเผื่อ (เกิน = OverProduction)</span></span></div>
+      <div class="check"><span class="ci x"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span class="ct"><b>น้ำหนักรวมเกินเป้า → ช่องเป็นสีแดง</b> <span>— และปุ่มบันทึกจะกดไม่ได้</span></span></div>
+      <div class="check"><span class="ci x"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span class="ct"><b>ต้องกรอกทุกช่องของล็อตให้ครบ</b> <span>— เลข Lot, น้ำหนัก &gt; 0, จำนวน &gt; 0 และคุณลักษณะครบ</span></span></div>
+      <div class="check"><span class="ci x"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span class="ct"><b>เลข Lot ต้องไม่ซ้ำ</b> <span>— และใบสั่งต้องเป็นสถานะ Released</span></span></div>
+    </div>
+    <p class="life-note">ล็อตที่บันทึกแล้วจะ<b>ล็อก</b> — แก้ไขได้เฉพาะตอนที่ยังเป็นสถานะ <b>รอส่ง (Pending)</b> เท่านั้น · ล็อตที่ยังไม่บันทึกลบได้ ล็อตที่บันทึกแล้วลบไม่ได้</p>
+  </section>
+
+  <!-- ============ OEE / REPORT ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">D · รายงาน</span><div><h2>Capacity · OEE · รายงานประจำวัน</h2><p class="sec-sub">สรุปประสิทธิภาพการผลิตของเครื่องในแต่ละวัน</p></div></div>
+    <div class="cal">
+      <div class="cbox"><p class="cl">Availability</p><p class="cv">%</p><p class="cs">เวลาเดินเครื่องจริง</p></div>
+      <div class="cbox"><p class="cl">Performance</p><p class="cv">%</p><p class="cs">ความเร็วเทียบมาตรฐาน</p></div>
+      <div class="cbox"><p class="cl">Quality</p><p class="cv">%</p><p class="cs">ของดีต่อของทั้งหมด</p></div>
+      <div class="cbox"><p class="cl">OEE รวม</p><p class="cv">%</p><p class="cs">ประสิทธิผลโดยรวม</p></div>
+    </div>
+    <p class="life-note">เลือก <b>เครื่อง + วันที่</b> แล้วดูรายงานประจำวัน (พิมพ์ได้) — มี 4 ส่วน: สรุปการผลิต, การใช้วัตถุดิบ, ผลผลิต และเวลาสูญเสีย</p>
+  </section>
+
+  <!-- ============ NAV ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-num">E · Navision</span><div><h2>ข้อมูลส่งเข้า Navision 2013 อย่างไร</h2><p class="sec-sub">บันทึกที่หน้างานทั้งหมดถูกเก็บทันที แล้วรอส่งเข้า NAV</p></div></div>
+    <div class="pivot">
+      <div class="pcard edit">
+        <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span><div><span class="who">ขาออก → NAV</span><h3>สิ่งที่เราบันทึก</h3></div></div>
+        <p class="note" style="margin-top:2px">การเริ่ม/พัก/หยุด, การใช้วัตถุดิบ และผลผลิต ถูกบันทึกเข้าฐานข้อมูลของ Cotco <b>ทันที</b> ด้วยสถานะ <b>“รอส่ง (Pending)”</b></p>
+        <p class="note">จากนั้น<b>ทีม Navision ของลูกค้าจะดึงรายการเหล่านี้เข้า NAV 2013</b> — Cotco เป็นฝ่ายเขียน ลูกค้าเป็นฝ่ายดึง</p>
+      </div>
+      <div class="pcard system">
+        <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></span><div><span class="who">ขาเข้า ← NAV</span><h3>ข้อมูลอ้างอิง</h3></div></div>
+        <p class="note" style="margin-top:2px">เครื่องจักร, ใบสั่งผลิต, สูตรวัตถุดิบ (BOM), สต็อกล็อต และเหตุผลการพัก <b>อ่านสดจาก Navision</b></p>
+        <p class="note">หน้างานจึงตรวจกับข้อมูล NAV ปัจจุบันเสมอ (ใบสั่งต้อง Released, วัตถุดิบต้องอยู่ใน BOM, ต้องมีสต็อก)</p>
+      </div>
+    </div>
+    <div class="callout info" style="margin-top:16px">
+      <span class="co-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+      <div><h4>แก้ไข = กลับรายการ ไม่ใช่การลบ</h4><p>รายการที่ลงผิดจะถูกแก้ด้วยการ<b>กลับรายการ (Reverse)</b> ที่ลงตัวเลขติดลบหักล้าง เพื่อให้มีร่องรอยตรวจสอบย้อนหลังได้ และซิงก์เข้า NAV อย่างถูกต้อง</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-brand"><span class="fl">จัดทำและพัฒนาระบบโดย</span><span class="fc"><img src="assets/knt-logo.png" alt="KNT Technology Co., Ltd."></span></div>
+    คู่มือบันทึกการผลิต · Production / Consumption / Output · เชื่อมต่อ Navision 2013 · Cotco Metalworks
+  </footer>
+</div>
+</body>
+</html>
